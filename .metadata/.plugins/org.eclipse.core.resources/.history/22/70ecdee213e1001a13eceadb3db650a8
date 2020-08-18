@@ -1,0 +1,5 @@
+package com.wakefield.myblog;
+
+public class MySQLConnectionTest {
+
+}
