@@ -2,6 +2,9 @@ package com.wakefield.myblog.model;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class BoardVO {
 	private int idx;
 	private String title;

@@ -205,7 +205,8 @@ public class MybatisTest {
 ```
 
 테스트 성공
-![dbTest](./img/dbTest)
+![dbTest](./img/dbTest.png)
+
 
 ### DB 생성하기
 ```sql
@@ -215,7 +216,7 @@ create table tbl_member(
 	pwd VARCHAR(256) NOT NULL,
 	name VARCHAR(16) NOT NULL,
 	email VARCHAR(32) NOT NULL,
-	`date` DATE NOT NULL,
+	`date` datetime NOT NULL,
 	PRIMARY KEY(num, id)
 );
 create table tbl_board(
@@ -223,9 +224,12 @@ create table tbl_board(
 	title VARCHAR(100) NOT NULL,
 	content text NOT NULL,
 	writer VARCHAR(20) NOT NULL,
-	`date` date NOT NULL,
+	`date` datetime NOT NULL,
 	hit int(11) NOT NULL default 0,
 	`lock` tinyint(1) NOT NULL default 0,
 	PRIMARY KEY(idx)
 );
 ```
+
+
+[mysql datetime과 timestamp에 대해](https://nesoy.github.io/articles/2020-02/mysql-datetime-timestamp)

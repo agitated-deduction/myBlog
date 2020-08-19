@@ -1,0 +1,9 @@
+package com.wakefield.myblog.service;
+
+public interface BoardService {
+	public List<BoardVO>getBoardList(String writer);
+	public BoardVO viewPost(BoardVO vo);
+	public int insertPost(BoardVO vo);
+	public int updatePost(BoardVO vo);
+	public int deletePost(BoardVO vo);
+}

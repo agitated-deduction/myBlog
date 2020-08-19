@@ -3,45 +3,53 @@
 ### 구상
 GET: /
 
+GET: /member/login<br>
+POST: /member/login<br>
+GET: /member/join<br>
+POST: /member/join<br>
+GET: /member/logout<br>
+GET: /memeber/account/info<br>
+UPDATE: /member/account/info<br>
+DELETE: /member/accoutn/info<br>
 
+GET: /board
 
-GET: /member/login
-POST: /member/login
-GET: /member/join
-POST: /member/join
-GET: /member/logout
-GET: /memeber/account/info
-UPDATE: /member/account/info
-DELETE: /member/accoutn/info
+GET: /{id}<br>
+GET: /{id}/fpost<br>
+POST: /{id}/fpost<br>
 
+UPDATE: /{id}/fpost<br>
+GET: /{id}/{num}<br>
+DELETE: /{id}/{num}<br>
 
-
-GET: /{id}
-GET: /{id}/fpost
-POST: /{id}/fpost
-
-UPDATE: /{id}/fpost
-GET: /{id}/{num}
-DELETE: /{id}/{num}
 
 ### DB
-member
-num int(11) AUTO_INCREMENT NOT NULL,
-id VARCHAR(20) NOT NULL,
-pwd VARCHAR(256) NOT NULL,
-name VARCHAR(16) NOT NULL,
-email VARCHAR(32) NOT NULL,
-date DATE NOT NULL,
-PRIMARY KEY(member_idx),
-UNIQUE KEY member_uk(member_id)
+member<br>
+num int(11) AUTO_INCREMENT NOT NULL,<br>
+id VARCHAR(20) NOT NULL,<br>
+pwd VARCHAR(256) NOT NULL,<br>
+name VARCHAR(16) NOT NULL,<br>
+email VARCHAR(32) NOT NULL,<br>
+date DATE NOT NULL,<br>
+PRIMARY KEY(member_idx),<br>
+UNIQUE KEY member_uk(member_id)<br>
 
-board
-idx int(11) AUTO_INCREMENT NOT NULL,
-title VARCHAR(64) NOT NULL,
-content text NOT NULL,
-author int(11) NOT NULL,
-date date NOT NULL,
-hit int(11) NOT NULL default 0,
-lock boolean
-FOREIGN KEY (author) references member(num)
-primary key(idx)
+board<br>
+idx int(11) AUTO_INCREMENT NOT NULL,<br>
+title VARCHAR(64) NOT NULL,<br>
+content text NOT NULL,<br>
+author int(11) NOT NULL,<br>
+date date NOT NULL,<br>
+hit int(11) NOT NULL default 0,<br>
+lock boolean<br>
+FOREIGN KEY (author) references member(num)<br>
+primary key(idx)<br>
+
+
+| 날짜 | 계획 | ... |
+|:--------|:--------|:--------|
+| 2020-08-20 | GET: /board | 날짜 출력 형태(YYYY-MM-DD HH:mm), 프론트 화면 이쁘게 |
+| 2020-08-21 | /{id} | <center>-</center> |
+| 2020-08-22 | <center>-</center> | 오류화면, 트랜잭션 |
+| 2020-08-23 | /member | <center>-</center> |
+| 2020-08-23 | /member | 인터셉터 |
