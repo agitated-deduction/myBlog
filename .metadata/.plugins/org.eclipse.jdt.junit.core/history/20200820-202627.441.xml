@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="BoardDAOTest" project="myblog" tests="6" started="6" failures="0" errors="0" ignored="5">
+  <testsuite name="com.wakefield.myblog.BoardDAOTest" time="3.528">
+    <testcase name="testDeleteBoard" classname="com.wakefield.myblog.BoardDAOTest" time="0.0" ignored="true"/>
+    <testcase name="testUpdateHit" classname="com.wakefield.myblog.BoardDAOTest" time="0.0" ignored="true"/>
+    <testcase name="testUpdateBoard" classname="com.wakefield.myblog.BoardDAOTest" time="3.119" ignored="true"/>
+    <testcase name="testInsertBoard" classname="com.wakefield.myblog.BoardDAOTest" time="0.407"/>
+    <testcase name="testGetBoardList" classname="com.wakefield.myblog.BoardDAOTest" time="0.0" ignored="true"/>
+    <testcase name="testGetPost" classname="com.wakefield.myblog.BoardDAOTest" time="0.002" ignored="true"/>
+  </testsuite>
+</testrun>

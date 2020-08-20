@@ -15,10 +15,10 @@ DELETE: /member/accoutn/info<br>
 GET: /board
 
 GET: /{id}<br>
-GET: /{id}/fpost<br>
-POST: /{id}/fpost<br>
+GET: /{id}/post<br>
+POST: /{id}/post<br>
 
-UPDATE: /{id}/fpost<br>
+UPDATE: /{id}/post<br>
 GET: /{id}/{num}<br>
 DELETE: /{id}/{num}<br>
 
@@ -53,3 +53,7 @@ primary key(idx)<br>
 | 2020-08-22 | <center>-</center> | 오류화면, 트랜잭션 |
 | 2020-08-23 | /member | <center>-</center> |
 | 2020-08-23 | /member | 인터셉터 |
+
+
+추가로 필요한거
+카테고리, 구독

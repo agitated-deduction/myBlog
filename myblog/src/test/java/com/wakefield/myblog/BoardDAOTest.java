@@ -36,7 +36,7 @@ public class BoardDAOTest {
 			}
 		}else logger.info("no data");
 	}
-	@Test 
+	@Test @Ignore
 	public void testGetPost() throws Exception{
 		BoardVO paramVO = new BoardVO();
 		paramVO.setIdx(1);
@@ -56,10 +56,10 @@ public class BoardDAOTest {
 		}else logger.info("no data");
 
 	}
-	@Test @Ignore
+	@Test 
 	public void testInsertBoard() throws Exception {
 		BoardVO paramVO = new BoardVO();
-		paramVO.setWriter("tester");
+		paramVO.setWriter("new-tester");
 		paramVO.setTitle("첫번째 게시물 입니다.");
 		paramVO.setContent("첫번째 게시물입니다.");
 

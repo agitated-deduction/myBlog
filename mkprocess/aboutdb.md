@@ -205,7 +205,7 @@ public class MybatisTest {
 ```
 
 테스트 성공
-![dbTest](./img/dbTest.png)
+![dbTest](./img/dbTest.PNG)
 
 
 ### DB 생성하기
@@ -233,3 +233,63 @@ create table tbl_board(
 
 
 [mysql datetime과 timestamp에 대해](https://nesoy.github.io/articles/2020-02/mysql-datetime-timestamp)
+
+### DB 쿼리 모니터링
+pom.xml
+```xml
+<!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4 -->
+<dependency>
+    <groupId>org.bgee.log4jdbc-log4j2</groupId>
+    <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+    <version>1.16</version>
+</dependency>
+```
+dataSource-context.xml
+```xml
+<!--  
+<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+<property name="url" value="jdbc:mysql://127.0.0.1:3306/myblog?useSSL=false&amp;serverTimezone=Asia/Seoul" />       
+-->
+<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/myblog?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;serverTimezone=UTC" />
+
+```
+
+log4jdbc.log4j2.properties
+```
+log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
+```
+
+log4j.xml
+```xml
+<!-- SQL Logger -->
+	<logger name="jdbc.sqltiming" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="console"/> 
+	</logger>
+	<!--sqltiming: SQL문과 실행시키는데 수행된 시간 정보 -->
+
+	<logger name="jdbc.sqlonly" additivity="false"> 
+		<level value="info"/> 
+		<appender-ref ref="console"/> 
+	</logger>
+	<!--sqlonly: 쿼리문장만 로그로. -->
+
+	<logger name="jdbc.audit" additivity="false"> 
+		<level value="warn"/>  
+		<appender-ref ref="console"/> 
+	</logger> 
+	<!--audit: resultset을 제외한 모든 jdbc호출 정보를 남긴다. 많은 양의 로그 생성, JDBC문제를 추적할 필요가 없는 경우 권장하지 않음 -->
+
+	<logger name="jdbc.resultset" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="console"/> 
+	</logger>
+	<!--resultset: audit + resultset까지. 많은양의 로그-->
+     
+	<logger name="jdbc.resultsettable" additivity="false"> 
+		<level value="info"/>  
+		<appender-ref ref="console"/> 
+	</logger> 
+	<!--resultsettable: 조회 된 데이터의 table을 로그로 남긴다. -->
+```
