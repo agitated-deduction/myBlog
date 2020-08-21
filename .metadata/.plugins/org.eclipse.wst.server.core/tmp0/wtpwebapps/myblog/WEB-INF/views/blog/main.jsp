@@ -45,11 +45,11 @@
   </div>
 	<div class = "row mb-2">
 		<c:choose>
-				<c:when test="${empty boardList }" >
+				<c:when test="${empty postList }" >
 					<tr><td colspan="5" align="center">데이터가 없습니다.</td></tr>
 				</c:when> 
-		<c:when test="${!empty boardList}">
-				<c:forEach var="list" items="${boardList}">
+		<c:when test="${!empty postList}">
+				<c:forEach var="list" items="${postList}">
 		<div class = "col-md-6">
 			<div class = "card flex-md-row mb-4 shadow-sm h-md-250">
 				<div class = "card-body d-flex flex-column align-items-start">

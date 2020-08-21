@@ -9,18 +9,18 @@ GET: /member/join<br>
 POST: /member/join<br>
 GET: /member/logout<br>
 GET: /memeber/account/info<br>
-UPDATE: /member/account/info<br>
+PUT: /member/account/info<br>
 DELETE: /member/accoutn/info<br>
 
 GET: /board
 
-GET: /{id}<br>
-GET: /{id}/post<br>
-POST: /{id}/post<br>
+GET: /{bid}<br>
+GET: /{uid}/post<br>
+POST: /{uid}/post<br>
 
-UPDATE: /{id}/post<br>
-GET: /{id}/{num}<br>
-DELETE: /{id}/{num}<br>
+PUT: /{uid}/post<br>
+GET: /{bid}/{num}<br>
+DELETE: /{uid}/{num}<br>
 
 
 ### DB

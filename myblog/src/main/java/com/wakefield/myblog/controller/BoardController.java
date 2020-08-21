@@ -25,20 +25,42 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String getPostList(Model model, @PathVariable("id")String writer) {
+	@RequestMapping(value = "/{bid}", method = RequestMethod.GET)
+	public String getPostList(Model model, @PathVariable("bid")String writer) {
 		model.addAttribute("postList", service.getPostList(writer));
 		return "blog/main";
 	}
 	
-	@RequestMapping(value = "/{id}/post", method = RequestMethod.GET)
-	public String postForm(Model model, @PathVariable("id")String writer) {
+	@RequestMapping(value = "/{uid}/post", method = RequestMethod.GET)
+	public String postForm(Model model, @PathVariable("uid")String writer) {
 		
 		return "blog/writeForm";
 	}
-	@RequestMapping(value = "/{id}/post", method = RequestMethod.POST)
-	public String insertPost(Model model, @PathVariable("id")String writer) {
+	@RequestMapping(value = "/{uid}/post", method = RequestMethod.POST)
+	public String insertPost(Model model, @PathVariable("uid")String writer, BoardVO vo) {
+		vo.setLock(false);//test용 임시
 		service.insertPost(vo);
-		return "blog/writeForm";
+		return "redirect:/board";//임시
+	}
+	@RequestMapping(value = "/{uid}/post", method = RequestMethod.PUT)
+	public String updatePost(Model model, @PathVariable("uid")String writer) {
+		//수정 과정. 수정폼은 글쓰기 폼과 동일, 엥 그럼 게시물 번호는.
+		//vo만들어
+		service.updatePost(vo);
+		return "";
+	}
+	@RequestMapping(value = "/{bid}/{num}", method = RequestMethod.GET)
+	public String viewPost(Model model, @PathVariable("bid")String writer, @PathVariable("num")int idx) {
+		vo.setIdx(idx);
+		vo.setWriter(writer);
+		model.addAttribute("post", service.viewPost(vo));
+		return "blog/aPost";
+	}
+	@RequestMapping(value = "/{uid}/{num}", method = RequestMethod.DELETE)
+	public String deletePost(Model model, @PathVariable("uid")String writer, @PathVariable("num")int idx) {
+		vo.setIdx(idx);
+		vo.setWriter(writer);
+		service.deletePost(vo);
+		return "";
 	}
 }
