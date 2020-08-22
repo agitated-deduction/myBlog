@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file = "../common/header.jsp" %>
 <!DOCTYPE html>
 
 <html>
@@ -55,10 +56,10 @@
         <div class="card-body d-flex flex-column align-items-start">
           <strong class="d-inline-block mb-2 text-primary">${list.writer }</strong>
           <h3 class="mb-0">
-            <a class="text-dark" href="#"><c:out value="${list.title}"/></a>
+            <a class="text-dark" href="#"onclick = 'viewPost("${list.writer}", ${list.idx })'><c:out value="${list.title}"/></a>
           </h3>
           <div class="mb-1 text-muted"><c:out value="${list.date}"/></div>
-          <p class="card-text mb-auto"><c:out value="${list.content}"/></a>
+          <p class="card-text mb-auto"><c:out value="${list.content}"/>
         </div>
          </div>
     </div>
@@ -79,7 +80,15 @@
 </footer>
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
  <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
- <script src="/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+ <script>
+ function viewPost(id, idx){
+		var url = "${contextPath}/"+id+"/"+idx;
+		location.href = url;
+	}
+ $(function(){
+	 
+ });
+ </script>
 </body>
 
 </html>

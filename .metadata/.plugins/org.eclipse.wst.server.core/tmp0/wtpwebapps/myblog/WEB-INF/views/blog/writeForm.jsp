@@ -7,25 +7,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ taglib prefix="form" uri = "http://www.springframework.org/tags/form" %> 
 
 <title>Insert title here</title>
 <style>
 body{
-	padding-top:90px;
-}</style>
+	padding-top:80px;
+}
+</style>
 </head>
 <body>
 	<div class = "container">
-		<h2>WRITE POST</h2>
-		<form name = "form" id = "form" method = "post" action= "${contextPath}/${uid}/post">
+		<h2>WRITE POST  ${mode } ${boardVO.writer }...</h2>
+		
+		<form name = "form" id = "form" action = "${contextPath}/${boardVO.writer}/newpost" method = "post">
+		<c:if test = "${mode eq 'edit' }">
+		<input type = "hidden" name = "_method" value = "put">
+			<input type = "hidden" name = "idx"/>
+			</c:if>
 			<div class = "mb-3">
 				<label for = "title">제목</label>
-				<input type = "text" class = "form-control" name = "title" id = "title" placeholder = "제목">
+				<input type = "text" class = "form-control" name = "title" id = "title" placeholder = "제목"/>
 			</div>
 			
 			<div class="mb-3">
 					<label for="writer">작성자</label>
-					<input type="text" class="form-control" name="writer" id="writer" placeholder="작성자; 로그인 기능 구현 후 삭제">
+					<input type="text" class="form-control" name="writer" id="writer" />
 				</div>
 
 				<div class="mb-3">
@@ -36,11 +43,11 @@ body{
 			<div class="d-block my-3">
           <div class="custom-control custom-radio">
             <input id="lock" name="lock" type="radio" class="custom-control-input" checked required>
-            <label class="custom-control-label" for="credit">공개</label>
+            <label class="custom-control-label" for="on">공개</label>
           </div>
           <div class="custom-control custom-radio">
             <input id="lock" name="lock" type="radio" class="custom-control-input" required>
-            <label class="custom-control-label" for="debit">비공개</label>
+            <label class="custom-control-label" for="off">비공개</label>
           </div>
         </div>
 			<div >
@@ -55,17 +62,35 @@ body{
 </body>
 <script>
 $(function(){
+	$("#writer").prop('readonly', true);
+	$("#writer").val('<c:out value = "${boardVO.writer}"/>');
+	
+	var mode = '<c:out value = "${mode}"/>';
+	if(mode == 'edit'){
+		
+		$("input:hidden[name='idx']").val(<c:out value = "${boardVO.idx}"/>);
+		$("#title").val('<c:out value = "${boardVO.title}"/>');
+		$("#content").val('<c:out value = "${boardVO.content}"/>');
+		$("#lock").val(0);//임시
+		
+		//$("#form").attr("action", "${contextPath}/${uid}/${post.idx}");
+	}
+	
 	$(document).on('click', '#btnSave', function(e){
 		e.preventDefault();
+		
 		$("#form").submit();
 	});
 
 	
 	$(document).on('click', '#btnList', function(e){
 		e.preventDefault();
-
+		
+		
 		location.href="${contextPath}/board";
 	});
+	
+	
 });
 </script>
 </html>
