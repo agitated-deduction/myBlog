@@ -1,0 +1,20 @@
+package com.wakefield.myblog.controller;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@ControllerAdvice
+@RequestMapping("/error")
+public class ErrorControlller {
+	@RequestMapping("/404error")
+	public String error404() {
+		System.out.println("controller");
+		return "error/error404";
+	}
+	
+	@RequestMapping("/500error")
+	public String error500() {
+		
+		return "error/error500";
+	}
+}

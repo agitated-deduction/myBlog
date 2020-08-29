@@ -61,4 +61,14 @@
     <filter-name>httpMethodFilter</filter-name>
     <url-pattern>/*</url-pattern>
 </filter-mapping>
+
+<!-- ERROR PAGE -->
+<error-page>
+	<error-code>404</error-code>
+	<location>/error/404error</location>
+</error-page>
+<error-page>
+	<error-code>500</error-code>
+	<location>/error/500error</location>
+</error-page>
 </web-app>

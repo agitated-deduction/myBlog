@@ -60,9 +60,13 @@ public class BoardDAOTest {
 	public void testInsertBoard() throws Exception {
 		BoardVO paramVO = new BoardVO();
 		paramVO.setWriter("new-tester");
-		paramVO.setTitle("첫번째 게시물 입니다.");
-		paramVO.setContent("첫번째 게시물입니다.");
-
+		//paramVO.setTitle("첫번째 게시물 입니다.");
+		//paramVO.setContent("첫번째 게시물입니다.");
+		paramVO.setLock(false);
+		
+		for(int i = 1; i < 1300; i++) {
+			paramVO.setTitle(i+" 게시물");
+			paramVO.setContent(i+ " 게시물 입니다.");
 		int result = boardDAO.insertPost(paramVO);
 
 		logger.info("\n Insert Post Result " +result);
@@ -75,6 +79,7 @@ public class BoardDAOTest {
 
 			logger.info("\n 게시물 등록 실패");
 
+		}
 		}
 
 	}

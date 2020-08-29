@@ -21,14 +21,14 @@ public class BoardController {
 	private BoardVO vo;
 	
 	@RequestMapping(value = "/board", method = RequestMethod.GET)
-	public String getBoardList(Model model) {
+	public String getBoardList(Model model)throws Exception {
 		model.addAttribute("boardList", service.getBoardList());
 		return "board/main";
 	}
 	
 	
 	@RequestMapping(value = "/{bid}", method = RequestMethod.GET)
-	public String getPostList(Model model, @PathVariable("bid")String writer) {
+	public String getPostList(Model model, @PathVariable("bid")String writer)throws Exception {
 		model.addAttribute("postList", service.getPostList(writer));
 		return "blog/main";
 	}
@@ -36,7 +36,7 @@ public class BoardController {
 	@RequestMapping(value = "/{uid}/newpost", method = RequestMethod.GET)
 	public String postForm(Model model, @PathVariable("uid")String writer, 
 			@RequestParam(value ="idx" ,required = false)Object idx,
-			@RequestParam(value = "mode",required = false)String mode) {
+			@RequestParam(value = "mode",required = false)String mode)throws Exception {
 
 		vo.setWriter(writer);
 		if(mode!=null&&mode.equals("edit")) {
@@ -48,28 +48,28 @@ public class BoardController {
 		return "blog/writeForm";
 	}
 	@RequestMapping(value = "/{uid}/newpost", method = RequestMethod.POST)
-	public String insertPost(Model model, @PathVariable("uid")String writer, BoardVO vo) {
+	public String insertPost(Model model, @PathVariable("uid")String writer, BoardVO vo)throws Exception {
 		vo.setLock(false);//test용 임시
 		service.insertPost(vo);
 		return "redirect:/board";//임시
 	}
 	@RequestMapping(value = "/{uid}/newpost", method = RequestMethod.PUT)
 	public String updatePost(Model model, @PathVariable("uid")String writer,
-			BoardVO vo) {
+			BoardVO vo) throws Exception{
 		
 		service.updatePost(vo);
 		String url = "redirect:/"+vo.getWriter()+"/"+vo.getIdx();
 		return url;
 	}
 	@RequestMapping(value = "/{bid}/{num}", method = RequestMethod.GET)
-	public String viewPost(Model model, @PathVariable("bid")String writer, @PathVariable("num")int idx) {
+	public String viewPost(Model model, @PathVariable("bid")String writer, @PathVariable("num")int idx) throws Exception{
 		vo.setIdx(idx);
 		vo.setWriter(writer);
 		model.addAttribute("post", service.viewPost(vo));
 		return "blog/aPost";
 	}
 	@RequestMapping(value = "/{uid}/{num}", method = RequestMethod.DELETE)
-	public @ResponseBody String deletePost(Model model, @PathVariable("uid")String writer, @PathVariable("num")int idx) {
+	public @ResponseBody String deletePost(Model model, @PathVariable("uid")String writer, @PathVariable("num")int idx) throws Exception{
 		vo.setIdx(idx);
 		vo.setWriter(writer);
 		if (0<service.deletePost(vo)) return "success";
