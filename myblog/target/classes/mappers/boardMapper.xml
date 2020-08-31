@@ -9,7 +9,15 @@
 
 <mapper namespace="com.wakefield.myblog.board.boardMapper">
 	<select id = "getBoardList" resultType = "com.wakefield.myblog.model.BoardVO">
+		<!-- 
 		SELECT * FROM tbl_board WHERE `lock` = 0;
+		 -->
+		 SELECT rownum, A.*
+		 FROM(
+		 	SELECT * FROM tbl_board
+		 	ORDER BY idx asc
+		 )A	
+		 LIMIT #{pageCnt}
 	</select>
 	<select id = "getPostList" parameterType = "string" resultType = "com.wakefield.myblog.model.BoardVO">
 		SELECT * FROM tbl_board WHERE writer = #{value};
