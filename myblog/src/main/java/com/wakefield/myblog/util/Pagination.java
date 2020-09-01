@@ -10,6 +10,11 @@ public class Pagination {
 	private int pageCnt = 10;
 	private boolean prev;
 	private boolean next;
+	
+	/*db위한 변수*/
+	private int indexing;
+	private int startIndex;
+	
 	public int getCurPage() {
 		return curPage;
 	}
@@ -65,20 +70,38 @@ public class Pagination {
 		this.next = next;
 	}
 	
+	
+	public int getIndexing() {
+		return indexing;
+	}
+	public int getStartIndex() {
+		return startIndex;
+	}
+	
 	public void page(int curPage, int totalPostCnt) {
 		this.curPage = curPage;
 		this.totalPostCnt = totalPostCnt;
 		
-		this.totalPageCnt = this.totalPostCnt/pagePostCnt;
-		this.startPage = (this.curPage-1)/this.pageCnt + 1;
+		this.totalPageCnt = (int)Math.ceil((double)this.totalPostCnt/pagePostCnt);
+		//System.out.println(this.totalPageCnt);
+		this.startPage = ((this.curPage-1)/this.pageCnt)*this.pageCnt+1;
 		this.endPage = this.startPage+(this.pageCnt-1);
 		
-		this.prev = startPage>1;
-		if(this.next = this.totalPageCnt<this.endPage)
+		this.prev = (startPage>1);
+		this.next = (this.totalPageCnt>this.endPage);
+
+		if(!this.next) {
 			this.endPage = this.totalPageCnt;
+		}
 		
 		//게시물은 rownum 사용?
-		
+		this.indexing = this.curPage*this.pagePostCnt;
+		this.startIndex = this.pagePostCnt*(this.curPage-1);
+		/*
+		System.out.println("start: "+startPage+" end: "+endPage+" current: "+this.curPage);
+		System.out.println(this.prev+" "+this.next);
+		System.out.println("total: "+this.totalPageCnt);
+		*/
 	}
 	
 }

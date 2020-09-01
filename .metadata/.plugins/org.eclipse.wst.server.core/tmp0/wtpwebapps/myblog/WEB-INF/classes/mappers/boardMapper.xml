@@ -8,8 +8,21 @@
     
 
 <mapper namespace="com.wakefield.myblog.board.boardMapper">
+	<select id = "getTotalCnt" resultType = "int">
+		select count(*) from tbl_board;
+	</select>
 	<select id = "getBoardList" resultType = "com.wakefield.myblog.model.BoardVO">
+		<!-- 
 		SELECT * FROM tbl_board WHERE `lock` = 0;
+		 -->
+		 SELECT A.*
+		 FROM(
+		 	SELECT @rownum:=@rownum+1 as rownum, tbl_board.*
+		 	FROM tbl_board, (select @rownum:=0)R
+		 	ORDER BY tbl_board.`date` desc limit #{indexing}
+		 )A	
+		 WHERE `lock` = 0
+		 LIMIT #{startIndex}, #{pagePostCnt};
 	</select>
 	<select id = "getPostList" parameterType = "string" resultType = "com.wakefield.myblog.model.BoardVO">
 		SELECT * FROM tbl_board WHERE writer = #{value};

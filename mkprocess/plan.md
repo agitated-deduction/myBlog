@@ -10,7 +10,7 @@ POST: /member/join<br>
 GET: /member/logout<br>
 GET: /memeber/account/info<br>
 PUT: /member/account/info<br>
-DELETE: /member/accoutn/info<br>
+DELETE: /member/account/info<br>
 
 GET: /board
 
@@ -57,3 +57,20 @@ primary key(idx)<br>
 
 추가로 필요한거
 카테고리, 구독
+
+
+
+new plan 20200901
+
+| 날짜 | 계획 | ... |
+|:--------|:--------|:--------|
+| 2020-09-02 | 게시물비공개 설정 | <center>-</center> |
+| 2020-09-02 | 검색 기능 | <center>-</center> |
+| 2020-09-03 | /member | login, logout |
+| 2020-09-04 | /member | join |
+| 2020-09-05 | /member/account/info | <center>-</center> |
+...
+이후 개인 블로그 생성
+1. 세션 아이디와 블로그 아이디 일치시 비공개 게시물 열람, 게시물 수정 및 삭제, 글쓰기 기능
+2. 세션 아이디와 블로그 아이디 일치하지 않을 경우 공개 게시물 열람
+3. 댓글기능 - 로그인 시에만 가능하도록

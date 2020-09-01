@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+
+    PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    
+
+<mapper namespace="com.wakefield.myblog.board.boardMapper">
+	<select id = "getBoardList" resultType = "com.wakefield.myblog.model.BoardVO">
+		<!-- 
+		SELECT * FROM tbl_board WHERE `lock` = 0;
+		 -->
+		 SELECT rownum, A.*
+		 FROM(
+		 	SELECT * FROM tbl_board
+		 	ORDER BY idx asc
+		 )A	
+		 LIMIT #{pageCnt}
+	</select>
+	<select id = "getPostList" parameterType = "string" resultType = "com.wakefield.myblog.model.BoardVO">
+		SELECT * FROM tbl_board WHERE writer = #{value};
+	</select>
+	<select id = "getPost" parameterType = "com.wakefield.myblog.model.BoardVO" resultType = "com.wakefield.myblog.model.BoardVO">
+		SELECT * FROM tbl_board WHERE writer = #{writer} AND idx = #{idx};
+	</select>
+	<insert id = "insertPost" parameterType = "com.wakefield.myblog.model.BoardVO">
+		INSERT INTO tbl_board(title, content, writer, `date`, `lock`)
+		VALUES(#{title}, #{content}, #{writer}, now(), #{lock});
+	</insert>
+	<update id = "updatePost" parameterType = "com.wakefield.myblog.model.BoardVO">
+		UPDATE tbl_board SET
+		title = #{title},
+		content = #{content},
+		`lock` = #{lock}
+		WHERE writer = #{writer} AND idx = #{idx};
+	</update>
+	<delete id = "deletePost" parameterType = "com.wakefield.myblog.model.BoardVO">
+		DELETE FROM tbl_board
+		WHERE writer = #{writer} AND idx = #{idx};
+	</delete>
+	<update id = "updateHit" parameterType = "com.wakefield.myblog.model.BoardVO">
+		UPDATE tbl_board SET
+		hit = (hit+1)
+		WHERE writer = #{writer} AND idx = #{idx};
+	</update>
+</mapper>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wakefield.myblog.model.BoardVO;
 import com.wakefield.myblog.service.BoardService;
+import com.wakefield.myblog.util.Pagination;
 
 @Controller
 public class BoardController {
@@ -21,8 +22,14 @@ public class BoardController {
 	private BoardVO vo;
 	
 	@RequestMapping(value = "/board", method = RequestMethod.GET)
-	public String getBoardList(Model model)throws Exception {
-		model.addAttribute("boardList", service.getBoardList());
+	public String getBoardList(Model model,
+			@RequestParam(required=false, defaultValue = "1")int curPage)throws Exception {
+		Pagination page = new Pagination();
+		
+		int totalPostCnt = service.getTotalCnt();
+		page.page(curPage, totalPostCnt);
+		model.addAttribute("pagination", page);
+		model.addAttribute("boardList", service.getBoardList(page));
 		return "board/main";
 	}
 	
@@ -49,7 +56,8 @@ public class BoardController {
 	}
 	@RequestMapping(value = "/{uid}/newpost", method = RequestMethod.POST)
 	public String insertPost(Model model, @PathVariable("uid")String writer, BoardVO vo)throws Exception {
-		vo.setLock(false);//test용 임시
+		System.out.println(vo.isLock());
+		//vo.setLock(false);//test용 임시
 		service.insertPost(vo);
 		return "redirect:/board";//임시
 	}

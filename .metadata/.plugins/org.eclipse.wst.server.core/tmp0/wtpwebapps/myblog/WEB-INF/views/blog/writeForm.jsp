@@ -42,12 +42,12 @@ body{
 			<!-- 공개여부 -->
 			<div class="d-block my-3">
           <div class="custom-control custom-radio">
-            <input id="lock" name="lock" type="radio" class="custom-control-input" checked required>
-            <label class="custom-control-label" for="on">공개</label>
+            <input id = "lock0"  value = "0" name="lock" type="radio" class="custom-control-input" checked >
+            <label class="custom-control-label" for="lock0">공개</label>
           </div>
           <div class="custom-control custom-radio">
-            <input id="lock" name="lock" type="radio" class="custom-control-input" required>
-            <label class="custom-control-label" for="off">비공개</label>
+            <input id = "lock1" value = "1" name="lock" type="radio" class="custom-control-input" >
+            <label class="custom-control-label" for="lock1">비공개</label>
           </div>
         </div>
 			<div >
@@ -71,14 +71,15 @@ $(function(){
 		$("input:hidden[name='idx']").val(<c:out value = "${boardVO.idx}"/>);
 		$("#title").val('<c:out value = "${boardVO.title}"/>');
 		$("#content").val('<c:out value = "${boardVO.content}"/>');
-		$("#lock").val(0);//임시
+		$("#lock").val('<c:out value = "${boardVO.lock}"/>');
 		
 		//$("#form").attr("action", "${contextPath}/${uid}/${post.idx}");
 	}
 	
 	$(document).on('click', '#btnSave', function(e){
 		e.preventDefault();
-		
+		//var test = $('input[name=lock]').val();
+		//alert(test);
 		$("#form").submit();
 	});
 

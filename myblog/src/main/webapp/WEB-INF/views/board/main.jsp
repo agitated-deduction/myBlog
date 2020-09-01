@@ -15,7 +15,7 @@
 <body>
 	<div class = "container">
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="#">BLOG HOME</a>
+  <a class="navbar-brand" href="${contextPath }/board">BLOG HOME</a>
   <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -68,7 +68,23 @@
 		</c:when>
 		</c:choose>
 	</div>
-	
+	<div id = "paginationBox">
+	<ul class = "pagination">
+		<c:if test = "${pagination.prev }">
+		<li class = "page-item"><a class="page-link" href="#" onClick="prevBtn('${pagination.curPage}', ${pagination.startPage}, '${pagination.pageCnt}')">
+		Prev</a></li>
+		</c:if>
+		
+		<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="index">
+			<li class="page-item <c:out value="${pagination.curPage == index ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="pagination('${index}', '${pagination.pageCnt}', '', '')"> ${index} </a></li>
+		</c:forEach>
+			<c:if test="${pagination.next}">
+				<li class="page-item"><a class="page-link" href="#" onClick="nextBtn('${pagination.curPage}', ${pagination.endPage}, '${pagination.pageCnt}')"> Next</a></li>
+	</c:if>
+
+
+	</ul>
+	</div>
 	</div>
 	<footer class="blog-footer">
   <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
@@ -85,9 +101,20 @@
 		var url = "${contextPath}/"+id+"/"+idx;
 		location.href = url;
 	}
- $(function(){
-	 
- });
+ function prevBtn(curPage, startPage, pageCnt){
+	 var curPage = startPage-1;
+	 var url = "${contextPath}/board?curPage="+curPage;
+	 location.href = url;
+ }
+ function nextBtn(curPage, endPage, pageCnt){
+	 var curPage = endPage+1;
+	 var url = "${contextPath}/board?curPage="+curPage;
+	 location.href = url;
+ }
+ function pagination(curPage, pageCnt, searchBy, keyword){
+	 var url = "${contextPath}/board?curPage="+curPage;
+	 location.href = url;
+ }
  </script>
 </body>
 

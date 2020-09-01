@@ -24,3 +24,7 @@ web.xml
     <url-pattern>/*</url-pattern>
 </filter-mapping>
 ```
+
+## radio
+
+label for와 radio id 일치

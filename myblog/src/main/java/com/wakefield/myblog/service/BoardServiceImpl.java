@@ -8,14 +8,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wakefield.myblog.dao.BoardDAO;
 import com.wakefield.myblog.model.BoardVO;
+import com.wakefield.myblog.util.Pagination;
 
 @Service
 public class BoardServiceImpl implements BoardService{
 	@Autowired BoardDAO dao;
 	
 	@Override
-	public List<BoardVO>getBoardList()throws Exception{
-		return dao.getBoardList();
+	public List<BoardVO>getBoardList(Pagination page)throws Exception{
+		return dao.getBoardList(page);
 	}
 	@Transactional
 	@Override
@@ -42,5 +43,9 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<BoardVO> getPostList(String writer)throws Exception {
 		return dao.getPostList(writer);
+	}
+	@Override
+	public int getTotalCnt() throws Exception {
+		return dao.getTotalCnt();
 	}
 }
