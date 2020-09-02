@@ -32,8 +32,13 @@
       </li>
     </ul>
     <form class="form-inline mt-2 mt-md-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    	<select class = "form-control mr-sm-2" name = "searchBy" id = "searchBy">
+    		<option value = "title">제목</option>
+    		<option value = "content">내용</option>
+    		<option value = "writer">작성자</option>
+    	</select>
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" name = "keyword" id = "keyword">
+      <button class="btn btn-outline-success my-2 my-sm-0" type = "button" name="searchBtn" id = "searchBtn">Search</button>
     </form>
   </div>
 </nav>
@@ -115,6 +120,15 @@
 	 var url = "${contextPath}/board?curPage="+curPage;
 	 location.href = url;
  }
+ 
+ $(function(){
+	$(document).on("click", '#searchBtn', function(e){
+		e.preventDefault();
+		var url = "${contextPath}/board?searchBy=" + $('#searchBy').val();
+		url += "&keyword="+ $('#keyword').val();
+		location.href = url;
+	});
+ });
  </script>
 </body>
 

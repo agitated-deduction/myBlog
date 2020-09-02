@@ -9,7 +9,18 @@
 
 <mapper namespace="com.wakefield.myblog.board.boardMapper">
 	<select id = "getTotalCnt" resultType = "int">
-		select count(*) from tbl_board;
+		select count(*) from tbl_board 
+			<trim prefix = "WHERE" prefixOverrides = "AND|OR">
+		 		<if test = "searchBy == 'title' and keyword!=null and keyword!= '' ">
+		 			AND TITLE like CONCAT('%', #{keyword}, '%')
+		 		</if>
+		 		<if test = "searchBy == 'content' and keyword!=null and keyword!= '' ">
+		 			AND CONTENT like CONCAT('%', #{keyword}, '%')
+		 		</if>
+		 		<if test = "searchBy == 'writer' and keyword!=null and keyword!= '' ">
+		 			AND WRITER like CONCAT('%', #{keyword}, '%')
+		 		</if>
+		 	</trim>;
 	</select>
 	<select id = "getBoardList" resultType = "com.wakefield.myblog.model.BoardVO">
 		<!-- 
@@ -19,6 +30,17 @@
 		 FROM(
 		 	SELECT @rownum:=@rownum+1 as rownum, tbl_board.*
 		 	FROM tbl_board, (select @rownum:=0)R
+		 	<trim prefix = "WHERE" prefixOverrides = "AND|OR">
+		 		<if test = "searchBy == 'title' and keyword!=null and keyword!= '' ">
+		 			AND TITLE like CONCAT('%', #{keyword}, '%')
+		 		</if>
+		 		<if test = "searchBy == 'content' and keyword!=null and keyword!= '' ">
+		 			AND CONTENT like CONCAT('%', #{keyword}, '%')
+		 		</if>
+		 		<if test = "searchBy == 'writer' and keyword!=null and keyword!= '' ">
+		 			AND WRITER like CONCAT('%', #{keyword}, '%')
+		 		</if>
+		 	</trim>
 		 	ORDER BY tbl_board.`date` desc limit #{indexing}
 		 )A	
 		 WHERE `lock` = 0

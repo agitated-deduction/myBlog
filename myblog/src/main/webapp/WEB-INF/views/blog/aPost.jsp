@@ -46,7 +46,7 @@ margin: 20pt;}
 			<div style="margin-top : 20px">
 				<button type="button" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
 				<input type="button" class="btn btn-sm btn-primary" id="btnDelete" value = "삭제">
-
+				<!-- 목록 버튼 클릭시 홈 말고 뒤로 -->
 				<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button>
 
 			</div>

@@ -1,4 +1,4 @@
-# 페이징
+# 페이징 & 검색
 
 ```java
     private int curPage;
@@ -45,3 +45,14 @@ startIndex: curPage에서 첫 게시물 idx
 ```
 * rownum을 찾고자 하는 위치까지만 붙여주기 위해 limit설정했으나 정말 찾고자 하는 위치까지만 붙는가
 최신순. 
+
+
+## 검색
+
+![searchrpob](./img/searchprob.png)
+<br>
+검색기능 적용 후 기본화면에서 포스트 하나가 덜 보임.
+
+![searchnoprob](./img/searchnoprob.png)
+<br>
+검색후 결과에는 원하는 수만큼 보임

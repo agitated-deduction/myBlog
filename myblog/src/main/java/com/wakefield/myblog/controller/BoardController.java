@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wakefield.myblog.model.BoardVO;
 import com.wakefield.myblog.service.BoardService;
-import com.wakefield.myblog.util.Pagination;
+import com.wakefield.myblog.util.Search;
 
 @Controller
 public class BoardController {
@@ -23,13 +23,21 @@ public class BoardController {
 	
 	@RequestMapping(value = "/board", method = RequestMethod.GET)
 	public String getBoardList(Model model,
-			@RequestParam(required=false, defaultValue = "1")int curPage)throws Exception {
-		Pagination page = new Pagination();
+			@RequestParam(required=false, defaultValue = "1")int curPage,
+			@RequestParam(required = false, defaultValue = "title")String searchBy,
+			@RequestParam(required = false)String keyword) throws Exception {
+		//Pagination page = new Pagination();
+		Search search = new Search();
+		search.setSearchBy(searchBy);
+		search.setKeyword(keyword);
+		//System.out.println("============="+curPage);
 		
-		int totalPostCnt = service.getTotalCnt();
-		page.page(curPage, totalPostCnt);
-		model.addAttribute("pagination", page);
-		model.addAttribute("boardList", service.getBoardList(page));
+		int totalPostCnt = service.getTotalCnt(search);
+		
+		//page.page(curPage, totalPostCnt);
+		search.page(curPage, totalPostCnt);
+		model.addAttribute("pagination", search);
+		model.addAttribute("boardList", service.getBoardList(search));
 		return "board/main";
 	}
 	

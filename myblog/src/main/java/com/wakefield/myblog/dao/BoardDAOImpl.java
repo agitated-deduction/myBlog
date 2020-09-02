@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.wakefield.myblog.model.BoardVO;
-import com.wakefield.myblog.util.Pagination;
+import com.wakefield.myblog.util.Search;
 
 @Repository("BoardDAO")
 public class BoardDAOImpl implements BoardDAO{
@@ -48,13 +48,13 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public List<BoardVO> getBoardList(Pagination page) throws Exception{
-		return sqlSession.selectList(ns+"getBoardList", page);
+	public List<BoardVO> getBoardList(Search search) throws Exception{
+		return sqlSession.selectList(ns+"getBoardList", search);
 	}
 
 	@Override
-	public int getTotalCnt() throws Exception {
-		return sqlSession.selectOne(ns+"getTotalCnt");
+	public int getTotalCnt(Search search) throws Exception {
+		return sqlSession.selectOne(ns+"getTotalCnt", search);
 	}
 
 }

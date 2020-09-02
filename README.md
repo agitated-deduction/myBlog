@@ -30,4 +30,4 @@
 [오류 & 트랜잭션](./mkprocess/error.md)
 
 
-[페이징 처리](./mkprocess/pagination.md)
+[페이징 처리 & 검색 기능](./mkprocess/pagination.md)

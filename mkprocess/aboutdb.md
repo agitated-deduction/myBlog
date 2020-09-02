@@ -293,3 +293,8 @@ log4j.xml
 	</logger> 
 	<!--resultsettable: 조회 된 데이터의 table을 로그로 남긴다. -->
 ```
+
+
+### mybatis 동적 SQL
+
+https://mybatis.org/mybatis-3/ko/dynamic-sql.html
