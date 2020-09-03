@@ -1,0 +1,5 @@
+package com.wakefield.myblog.util;
+
+public class SHA256 {
+
+}

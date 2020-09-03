@@ -66,8 +66,9 @@ new plan 20200901
 |:--------|:--------|:--------|
 | 2020-09-02 | 게시물비공개 설정 | <center>-</center> |
 | 2020-09-02 | 검색 기능 | <center>-</center> |
-| 2020-09-03 | /member | login, logout |
-| 2020-09-04 | /member | join |
+| 2020-09-03 | /member | join |
+| 2020-09-04 | /member | join -> restcontroller, ajax 사용하여 수정하기 |
+| 2020-09-04 | /member | 로그인 로그아웃 |
 | 2020-09-05 | /member/account/info | <center>-</center> |
 ...
 이후 개인 블로그 생성

@@ -1,0 +1,10 @@
+package com.wakefield.myblog.service;
+
+import com.wakefield.myblog.model.MemberVO;
+
+public interface MemberService {
+	public MemberVO loginCheck(MemberVO vo)throws Exception;
+	public int insertMember(MemberVO vo) throws Exception;
+	public int updateMember(MemberVO vo) throws Exception;
+	public int deleteMember(MemberVO vo) throws Exception;
+}

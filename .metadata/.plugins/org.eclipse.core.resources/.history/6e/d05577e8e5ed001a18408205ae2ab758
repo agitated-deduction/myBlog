@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+
+    PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    
+
+<mapper namespace="com.wakefield.myblog.member.memberMapper">
+	<select id = "loginCheck" parameterType = "com.wakefield.myblog.model.MemberVO" resultType = "com.wakefield.myblog.model.MemberVO">
+		select * from tbl_member
+		where id = #{id} AND pwd = #{pwd};
+	</select>
+	<insert id = "insertMember" parameterType = "com.wakefield.myblog.model.MemberVO">
+		insert into tbl_member(id, pwd, name, email, `date`)
+		values (#{id}, #{pwd}, #{name}, #{email}, now());
+	</insert>
+	<select id = "selectMember" parameterType = "" resultType = "com.wakefield.myblog.model.MemberVO">
+	
+	</select>
+	<update id = "updateMember" parameterType = "com.wakefield.myblog.model.MemberVO">
+		UPDATE tbl_member SET
+		id = #{id},
+		name = #{name},
+		email = #{email}
+		WHERE num = #{num};
+	</update>
+	<delete id = "deleteMember" parameterType = "com.wakefield.myblog.model.MemberVO">
+		DELETE FROM tbl_member
+		WHERE num = #{num} AND pwd = #{pwd};
+	</delete>
+</mapper>

@@ -1,0 +1,5 @@
+package com.wakefield.myblog.service;
+
+public class MemberServiceImpl {
+
+}
